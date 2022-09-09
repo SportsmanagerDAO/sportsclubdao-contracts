@@ -1084,7 +1084,7 @@ interface IRicardianLLC {
 }
 
 /// @notice Factory to deploy SportsClub DAO.
-contract SportsClubDAOfactory is Multicall {
+contract SportsClubDAOfactoryV1 is Multicall {
     event DAOdeployed(
         SportsClubDAOv1 indexed sportsclubDAO, 
         string name, 
