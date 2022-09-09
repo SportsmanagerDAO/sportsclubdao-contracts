@@ -9,8 +9,8 @@ import {Multicall} from '../utils/Multicall.sol';
 
 import {NTERC1155} from '../tokens/erc1155/NTERC1155.sol';
 
-/// @notice Kali DAO access manager
-contract KaliAccessManager is Multicall, NTERC1155 {
+/// @notice SportsClub DAO access manager
+contract SportsClubAccessManager is Multicall, NTERC1155 {
     /// -----------------------------------------------------------------------
     /// Library Usage
     /// -----------------------------------------------------------------------
@@ -77,7 +77,7 @@ contract KaliAccessManager is Multicall, NTERC1155 {
         return
             JSON._formattedMetadata(
                 string.concat('Access #', SVG._uint2str(id)), 
-                'Kali Access Manager', 
+                'SportsClub Access Manager', 
                 string.concat(
                 '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" style="background:#191919">',
                 SVG._text(
@@ -157,7 +157,7 @@ contract KaliAccessManager is Multicall, NTERC1155 {
             keccak256(
                 abi.encode(
                     keccak256('EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)'),
-                    keccak256(bytes('KaliAccessManager')),
+                    keccak256(bytes('SportsClubAccessManager')),
                     keccak256('1'),
                     block.chainid,
                     address(this)

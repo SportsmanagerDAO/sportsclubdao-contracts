@@ -3,16 +3,16 @@
 pragma solidity >=0.8.4;
 
 import '../../libraries/SafeTransferLib.sol';
-import '../../interfaces/IKaliDAOtribute.sol';
+import '../../interfaces/ISportsClubDAOtribute.sol';
 import '../../utils/Multicall.sol';
 import '../../utils/ReentrancyGuard.sol';
 
-/// @notice Tribute contract that escrows ETH, ERC-20 or NFT for Kali DAO proposals.
-contract KaliDAOtribute is Multicall, ReentrancyGuard {
+/// @notice Tribute contract that escrows ETH, ERC-20 or NFT for SportsClub DAO proposals.
+contract SportsClubDAOtribute is Multicall, ReentrancyGuard {
     using SafeTransferLib for address;
 
     event NewTributeProposal(
-        IKaliDAOtribute indexed dao,
+        ISportsClubDAOtribute indexed dao,
         address indexed proposer, 
         uint256 indexed proposal, 
         address asset, 
@@ -20,9 +20,9 @@ contract KaliDAOtribute is Multicall, ReentrancyGuard {
         uint256 value
     );
 
-    event TributeProposalCancelled(IKaliDAOtribute indexed dao, uint256 indexed proposal);
+    event TributeProposalCancelled(ISportsClubDAOtribute indexed dao, uint256 indexed proposal);
 
-    event TributeProposalReleased(IKaliDAOtribute indexed dao, uint256 indexed proposal);
+    event TributeProposalReleased(ISportsClubDAOtribute indexed dao, uint256 indexed proposal);
     
     error NotProposer();
 
@@ -32,7 +32,7 @@ contract KaliDAOtribute is Multicall, ReentrancyGuard {
 
     error NotProcessed();
 
-    mapping(IKaliDAOtribute => mapping(uint256 => Tribute)) public tributes;
+    mapping(ISportsClubDAOtribute => mapping(uint256 => Tribute)) public tributes;
 
     struct Tribute {
         address proposer;
@@ -42,8 +42,8 @@ contract KaliDAOtribute is Multicall, ReentrancyGuard {
     }
 
     function submitTributeProposal(
-        IKaliDAOtribute dao,
-        IKaliDAOtribute.ProposalType proposalType, 
+        ISportsClubDAOtribute dao,
+        ISportsClubDAOtribute.ProposalType proposalType, 
         string memory description,
         address[] calldata accounts,
         uint256[] calldata amounts,
@@ -79,7 +79,7 @@ contract KaliDAOtribute is Multicall, ReentrancyGuard {
         emit NewTributeProposal(dao, msg.sender, proposal, asset, nft, value);
     }
 
-    function cancelTributeProposal(IKaliDAOtribute dao, uint256 proposal) public nonReentrant virtual {
+    function cancelTributeProposal(ISportsClubDAOtribute dao, uint256 proposal) public nonReentrant virtual {
         Tribute storage trib = tributes[dao][proposal];
 
         if (msg.sender != trib.proposer) revert NotProposer();
@@ -100,18 +100,18 @@ contract KaliDAOtribute is Multicall, ReentrancyGuard {
         emit TributeProposalCancelled(dao, proposal);
     }
 
-    function releaseTributeProposalAndProcess(IKaliDAOtribute dao, uint256 proposal) public virtual {
+    function releaseTributeProposalAndProcess(ISportsClubDAOtribute dao, uint256 proposal) public virtual {
         dao.processProposal(proposal);
 
         releaseTributeProposal(dao, proposal);
     }
 
-    function releaseTributeProposal(IKaliDAOtribute dao, uint256 proposal) public nonReentrant virtual {
+    function releaseTributeProposal(ISportsClubDAOtribute dao, uint256 proposal) public nonReentrant virtual {
         Tribute storage trib = tributes[dao][proposal];
 
         if (trib.proposer == address(0)) revert NotProposal();
         
-        IKaliDAOtribute.ProposalState memory prop = dao.proposalStates(proposal);
+        ISportsClubDAOtribute.ProposalState memory prop = dao.proposalStates(proposal);
 
         if (!prop.processed) revert NotProcessed();
 

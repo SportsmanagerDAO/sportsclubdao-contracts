@@ -5,7 +5,7 @@ pragma solidity >=0.8.4;
 /// @notice Modern and gas-optimized ERC-20 + EIP-2612 implementation with COMP-style governance and pausing.
 /// @author Modified from Solmate (https://github.com/Rari-Capital/solmate/blob/main/src/erc20/ERC20.sol)
 /// License-Identifier: AGPL-3.0-only
-abstract contract KaliDAOtoken {
+abstract contract SportsClubDAOtoken {
     /*///////////////////////////////////////////////////////////////
                             EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -533,8 +533,8 @@ abstract contract ReentrancyGuard {
     }
 }
 
-/// @notice Kali DAO membership extension interface.
-interface IKaliDAOextension {
+/// @notice SportsClub DAO membership extension interface.
+interface ISportsClubDAOextension {
     function setExtension(bytes calldata extensionData) external;
 
     function callExtension(
@@ -544,8 +544,8 @@ interface IKaliDAOextension {
     ) external payable returns (bool mint, uint256 amountOut);
 }
 
-/// @notice Simple gas-optimized Kali DAO core module.
-contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
+/// @notice Simple gas-optimized SportsClub DAO core module.
+contract SportsClubDAOv1 is SportsClubDAOtoken, Multicall, NFThelper, ReentrancyGuard {
     /*///////////////////////////////////////////////////////////////
                             EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -702,7 +702,7 @@ contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
 
         if (govSettings_[3] <= 51 || govSettings_[3] > 100) revert SupermajorityBounds();
 
-        KaliDAOtoken._init(name_, symbol_, paused_, voters_, shares_);
+        SportsClubDAOtoken._init(name_, symbol_, paused_, voters_, shares_);
 
         if (extensions_.length != 0) {
             // cannot realistically overflow on human timescales
@@ -901,7 +901,7 @@ contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
         uint96 weight = getPriorVotes(signer, prop.creationTime);
         
         // this is safe from overflow because `yesVotes` and `noVotes` are capped by `totalSupply`
-        // which is checked for overflow in `KaliDAOtoken` contract
+        // which is checked for overflow in `SportsClubDAOtoken` contract
         unchecked { 
             if (approve) {
                 prop.yesVotes += weight;
@@ -985,7 +985,7 @@ contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
                         if (prop.amounts[i] != 0) 
                             extensions[prop.accounts[i]] = !extensions[prop.accounts[i]];
                     
-                        if (prop.payloads[i].length > 3) IKaliDAOextension(prop.accounts[i])
+                        if (prop.payloads[i].length > 3) ISportsClubDAOextension(prop.accounts[i])
                             .setExtension(prop.payloads[i]);
                     }
                 
@@ -1019,7 +1019,7 @@ contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
             uint256 minVotes = (totalSupply * quorum) / 100;
             
             // this is safe from overflow because `yesVotes` and `noVotes` 
-            // supply are checked in `KaliDAOtoken` contract
+            // supply are checked in `SportsClubDAOtoken` contract
             unchecked {
                 uint256 votes = yesVotes + noVotes;
 
@@ -1059,7 +1059,7 @@ contract KaliDAOv1 is KaliDAOtoken, Multicall, NFThelper, ReentrancyGuard {
     ) public payable nonReentrant virtual returns (bool mint, uint256 amountOut) {
         if (!extensions[extension]) revert NotExtension();
         
-        (mint, amountOut) = IKaliDAOextension(extension).callExtension{value: msg.value}
+        (mint, amountOut) = ISportsClubDAOextension(extension).callExtension{value: msg.value}
             (msg.sender, amount, extensionData);
         
         if (mint) {
@@ -1083,10 +1083,10 @@ interface IRicardianLLC {
     function mintLLC(address to) external payable;
 }
 
-/// @notice Factory to deploy Kali DAO.
-contract KaliDAOfactory is Multicall {
+/// @notice Factory to deploy SportsClub DAO.
+contract SportsClubDAOfactory is Multicall {
     event DAOdeployed(
-        KaliDAOv1 indexed kaliDAO, 
+        SportsClubDAOv1 indexed sportsclubDAO, 
         string name, 
         string symbol, 
         string docs, 
@@ -1100,17 +1100,17 @@ contract KaliDAOfactory is Multicall {
 
     error NullDeploy();
 
-    address payable private immutable kaliMaster;
+    address payable private immutable sportsclubMaster;
 
     IRicardianLLC private immutable ricardianLLC;
 
-    constructor(address payable kaliMaster_, IRicardianLLC ricardianLLC_) {
-        kaliMaster = kaliMaster_;
+    constructor(address payable sportsclubMaster_, IRicardianLLC ricardianLLC_) {
+        sportsclubMaster = sportsclubMaster_;
 
         ricardianLLC = ricardianLLC_;
     }
     
-    function deployKaliDAO(
+    function deploySportsClubDAO(
         string memory name_,
         string memory symbol_,
         string memory docs_,
@@ -1120,10 +1120,10 @@ contract KaliDAOfactory is Multicall {
         address[] calldata voters_,
         uint256[] calldata shares_,
         uint32[16] memory govSettings_
-    ) public payable virtual returns (KaliDAOv1 kaliDAO) {
-        kaliDAO = KaliDAOv1(_cloneAsMinimalProxy(kaliMaster, name_));
+    ) public payable virtual returns (SportsClubDAOv1 sportsclubDAO) {
+        sportsclubDAO = SportsClubDAOv1(_cloneAsMinimalProxy(sportsclubMaster, name_));
         
-        kaliDAO.init(
+        sportsclubDAO.init(
             name_, 
             symbol_, 
             docs_,
@@ -1138,10 +1138,10 @@ contract KaliDAOfactory is Multicall {
         bytes memory docs = bytes(docs_);
 
         if (docs.length == 0) {
-            ricardianLLC.mintLLC{value: msg.value}(address(kaliDAO));
+            ricardianLLC.mintLLC{value: msg.value}(address(sportsclubDAO));
         }
 
-        emit DAOdeployed(kaliDAO, name_, symbol_, docs_, paused_, extensions_, extensionsData_, voters_, shares_, govSettings_);
+        emit DAOdeployed(sportsclubDAO, name_, symbol_, docs_, paused_, extensions_, extensionsData_, voters_, shares_, govSettings_);
     }
 
     /// @dev modified from Aelin (https://github.com/AelinXYZ/aelin/blob/main/contracts/MinimalProxyFactory.sol)

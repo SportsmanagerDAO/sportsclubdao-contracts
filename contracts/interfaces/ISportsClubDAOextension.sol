@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity >=0.8.4;
 
-/// @notice Kali DAO membership extension interface
-interface IKaliDAOextension {
+/// @notice SportsClub DAO membership extension interface
+interface ISportsClubDAOextension {
     function setExtension(bytes calldata extensionData) external payable;
 
     function callExtension(

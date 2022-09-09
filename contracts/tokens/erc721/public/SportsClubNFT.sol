@@ -5,8 +5,8 @@ pragma solidity >=0.8.4;
 import '../ERC721.sol';
 import '../../../utils/Multicall.sol';
 
-/// @notice Public NFT minter for Kali DAO.
-contract KaliNFT is ERC721, Multicall {
+/// @notice Public NFT minter for SportsClub DAO.
+contract SportsClubNFT is ERC721, Multicall {
     mapping(uint256 => string) private _tokenURI;
 
     constructor(string memory name_, string memory symbol_) ERC721(name_, symbol_) {}

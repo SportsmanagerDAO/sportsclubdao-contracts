@@ -3,17 +3,17 @@ pragma solidity >=0.8.4;
 
 import {SafeTransferLib} from '../../libraries/SafeTransferLib.sol';
 
-import {IKaliAccessManager} from '../../interfaces/IKaliAccessManager.sol';
-import {IKaliShareManager} from '../../interfaces/IKaliShareManager.sol';
+import {ISportsClubAccessManager} from '../../interfaces/ISportsClubAccessManager.sol';
+import {ISportsClubShareManager} from '../../interfaces/ISportsClubShareManager.sol';
 import {IERC20permit} from '../../interfaces/IERC20permit.sol';
 
-import {KaliOwnable} from '../../access/KaliOwnable.sol';
+import {SportsClubOwnable} from '../../access/SportsClubOwnable.sol';
 
 import {Multicall} from '../../utils/Multicall.sol';
 import {ReentrancyGuard} from '../../utils/ReentrancyGuard.sol';
 
 /// @notice Crowdsale contract that receives ETH or ERC-20 to mint registered DAO tokens, including merkle access lists
-contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
+contract SportsClubDAOcrowdsale is SportsClubOwnable, Multicall, ReentrancyGuard {
     /// -----------------------------------------------------------------------
     /// Library Usage
     /// -----------------------------------------------------------------------
@@ -35,7 +35,7 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
         string details
     );
     event ExtensionCalled(address indexed dao, address indexed purchaser, uint256 amountOut);
-    event KaliRateSet(uint8 kaliRate);
+    event SportsClubRateSet(uint8 sportsclubRate);
 
     /// -----------------------------------------------------------------------
     /// Errors
@@ -52,8 +52,8 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
     /// Sale Storage
     /// -----------------------------------------------------------------------
  
-    uint8 private kaliRate;
-    IKaliAccessManager private immutable accessManager;
+    uint8 private sportsclubRate;
+    ISportsClubAccessManager private immutable accessManager;
     address private immutable wETH;
 
     mapping(address => Crowdsale) public crowdsales;
@@ -78,9 +78,9 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
     /// Constructor
     /// -----------------------------------------------------------------------
 
-    constructor(IKaliAccessManager accessManager_, address wETH_) {
+    constructor(ISportsClubAccessManager accessManager_, address wETH_) {
         accessManager = accessManager_;
-        KaliOwnable._init(msg.sender);
+        SportsClubOwnable._init(msg.sender);
         wETH = wETH_;
     }
 
@@ -168,8 +168,8 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
             total = amount;
         }
 
-        if (kaliRate != 0) {
-            uint256 fee = (total * kaliRate) / 100;
+        if (sportsclubRate != 0) {
+            uint256 fee = (total * sportsclubRate) / 100;
             // cannot underflow since fee will be less than total
             unchecked { 
                 payment = total - fee;
@@ -199,7 +199,7 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
         sale.purchaseTotal += amountOut;
         sale.personalPurchased[msg.sender] += amountOut;
             
-        IKaliShareManager(dao).mintShares(msg.sender, amountOut);
+        ISportsClubShareManager(dao).mintShares(msg.sender, amountOut);
 
         emit ExtensionCalled(dao, msg.sender, amountOut);
     }
@@ -208,13 +208,13 @@ contract KaliDAOcrowdsale is KaliOwnable, Multicall, ReentrancyGuard {
     /// Sale Management
     /// -----------------------------------------------------------------------
 
-    function setKaliRate(uint8 kaliRate_) external payable onlyOwner {
-        if (kaliRate_ > 100) revert RateLimit();
-        kaliRate = kaliRate_;
-        emit KaliRateSet(kaliRate_);
+    function setSportsClubRate(uint8 sportsclubRate_) external payable onlyOwner {
+        if (sportsclubRate_ > 100) revert RateLimit();
+        sportsclubRate = sportsclubRate_;
+        emit SportsClubRateSet(sportsclubRate_);
     }
 
-    function claimKaliFees(
+    function claimSportsClubFees(
         address to, 
         address asset, 
         uint256 amount

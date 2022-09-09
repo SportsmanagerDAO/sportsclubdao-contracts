@@ -14,8 +14,8 @@ async function advanceTime(time) {
 }
 
 describe("Tribute", function () {
-    let Kali // KaliDAO contract
-    let kali // KaliDAO contract instance
+    let SportsClub // SportsClubDAO contract
+    let sportsclub // SportsClubDAO contract instance
     let Tribute // Tribute contract
     let tribute // Tribute contract instance
     let proposer // signerA
@@ -25,20 +25,20 @@ describe("Tribute", function () {
     beforeEach(async () => {
       ;[proposer, alice, bob] = await ethers.getSigners()
   
-      Kali = await ethers.getContractFactory("KaliDAO")
-      kali = await Kali.deploy()
-      await kali.deployed()
-      // console.log(kali.address)
+      SportsClub = await ethers.getContractFactory("SportsClubDAO")
+      sportsclub = await SportsClub.deploy()
+      await sportsclub.deployed()
+      // console.log(sportsclub.address)
       // console.log("alice eth balance", await alice.getBalance())
       // console.log("bob eth balance", await bob.getBalance())
-      Tribute = await ethers.getContractFactory("KaliDAOtribute")
+      Tribute = await ethers.getContractFactory("SportsClubDAOtribute")
       tribute = await Tribute.deploy()
       await tribute.deployed()
     })
 
     it("Should process tribute proposal directly", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -51,7 +51,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -66,32 +66,32 @@ describe("Tribute", function () {
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, true)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await tribute.releaseTributeProposalAndProcess(kali.address, 1)
+        await tribute.releaseTributeProposalAndProcess(sportsclub.address, 1)
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(1010)
         )
     })
   
     it("Should process ETH tribute proposal", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -104,7 +104,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -119,33 +119,33 @@ describe("Tribute", function () {
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, true)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(1010)
         )
     })
 
     it("Should process ERC20 tribute proposal", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("KaliERC20")
+        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
@@ -158,8 +158,8 @@ describe("Tribute", function () {
             proposer.address
         )
 
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -174,7 +174,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, getBigNumber(50))
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -191,36 +191,36 @@ describe("Tribute", function () {
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, true)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
         )
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(1010)
         )
     })
 
     it("Should process NFT tribute proposal", async function () {
         // Instantiate purchaseToken
-        let PurchaseToken = await ethers.getContractFactory("KaliNFT")
+        let PurchaseToken = await ethers.getContractFactory("SportsClubNFT")
         let purchaseToken = await PurchaseToken.deploy(
             "NFT",
             "NFT"
@@ -228,8 +228,8 @@ describe("Tribute", function () {
         await purchaseToken.deployed()
         await purchaseToken.mint(proposer.address, 1, "DOCS")
 
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -244,7 +244,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, 1)
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -264,39 +264,39 @@ describe("Tribute", function () {
         expect(await purchaseToken.ownerOf(1)).to.equal(
             tribute.address
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             0
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, true)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             0
         )
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             0
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             1
         )
         expect(await purchaseToken.ownerOf(1)).to.equal(
-            kali.address
+            sportsclub.address
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(1010)
         )
     })
 
     it("Should allow ETH tribute proposal cancellation", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -309,7 +309,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -325,23 +325,23 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await tribute.cancelTributeProposal(kali.address, 1)
+        await tribute.cancelTributeProposal(sportsclub.address, 1)
 
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             0
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             0
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
     })
 
     it("Should allow ERC20 tribute proposal cancellation", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("KaliERC20")
+        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
@@ -353,8 +353,8 @@ describe("Tribute", function () {
             false,
             proposer.address
         )
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -369,7 +369,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, getBigNumber(50))
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -386,15 +386,15 @@ describe("Tribute", function () {
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await tribute.cancelTributeProposal(kali.address, 1)
+        await tribute.cancelTributeProposal(sportsclub.address, 1)
 
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(1000)
@@ -402,18 +402,18 @@ describe("Tribute", function () {
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
     })
 
     it("Should allow NFT tribute proposal cancellation", async function () {
         // Instantiate purchaseToken
-        let PurchaseToken = await ethers.getContractFactory("KaliNFT")
+        let PurchaseToken = await ethers.getContractFactory("SportsClubNFT")
         let purchaseToken = await PurchaseToken.deploy(
             "NFT",
             "NFT"
@@ -421,8 +421,8 @@ describe("Tribute", function () {
         await purchaseToken.deployed()
         await purchaseToken.mint(proposer.address, 1, "DOCS")
 
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -437,7 +437,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, 1)
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -457,15 +457,15 @@ describe("Tribute", function () {
         expect(await purchaseToken.ownerOf(1)).to.equal(
             tribute.address
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             0
         )
 
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
 
-        await tribute.cancelTributeProposal(kali.address, 1)
+        await tribute.cancelTributeProposal(sportsclub.address, 1)
 
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             1
@@ -476,18 +476,18 @@ describe("Tribute", function () {
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             0
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             0
         )
    
-        expect(await kali.balanceOf(proposer.address)).to.equal(
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(
             getBigNumber(10)
         )
     })
 
     it("Should prevent cancellation by non-proposer of tribute proposal", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -500,7 +500,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -516,12 +516,12 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
         
-        expect(await tribute.connect(alice).cancelTributeProposal(kali.address, 1).should.be.reverted)
+        expect(await tribute.connect(alice).cancelTributeProposal(sportsclub.address, 1).should.be.reverted)
     })
 
     it("Should prevent cancellation of sponsored ETH tribute proposal", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -534,7 +534,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -550,14 +550,14 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
+        await sportsclub.sponsorProposal(1)
         
-        expect(await tribute.cancelTributeProposal(kali.address, 1).should.be.reverted)
+        expect(await tribute.cancelTributeProposal(sportsclub.address, 1).should.be.reverted)
     })
 
     it("Should prevent cancellation of sponsored ERC20 tribute proposal", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("KaliERC20")
+        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
@@ -569,8 +569,8 @@ describe("Tribute", function () {
             false,
             proposer.address
         )
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -585,7 +585,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, getBigNumber(50))
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -603,9 +603,9 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
+        await sportsclub.sponsorProposal(1)
         
-        expect(await tribute.cancelTributeProposal(kali.address, 1).should.be.reverted)
+        expect(await tribute.cancelTributeProposal(sportsclub.address, 1).should.be.reverted)
 
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
@@ -613,14 +613,14 @@ describe("Tribute", function () {
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
     })
 
     it("Should prevent cancellation of sponsored NFT tribute proposal", async function () {
         // Instantiate purchaseToken
-        let PurchaseToken = await ethers.getContractFactory("KaliNFT")
+        let PurchaseToken = await ethers.getContractFactory("SportsClubNFT")
         let purchaseToken = await PurchaseToken.deploy(
             "NFT",
             "NFT"
@@ -628,8 +628,8 @@ describe("Tribute", function () {
         await purchaseToken.deployed()
         await purchaseToken.mint(proposer.address, 1, "DOCS")
 
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -644,7 +644,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, 1)
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -665,9 +665,9 @@ describe("Tribute", function () {
             tribute.address
         )
 
-        await kali.sponsorProposal(1)
+        await sportsclub.sponsorProposal(1)
         
-        expect(await tribute.cancelTributeProposal(kali.address, 1).should.be.reverted)
+        expect(await tribute.cancelTributeProposal(sportsclub.address, 1).should.be.reverted)
 
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             0
@@ -678,14 +678,14 @@ describe("Tribute", function () {
         expect(await purchaseToken.ownerOf(1)).to.equal(
             tribute.address
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             0
         )
     })
 
     it("Should return ETH tribute to proposer if proposal unsuccessful", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -698,7 +698,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -714,22 +714,22 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, false)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, false)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
     })
 
     it("Should return ERC20 tribute to proposer if proposal unsuccessful", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("KaliERC20")
+        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
@@ -741,8 +741,8 @@ describe("Tribute", function () {
             false,
             proposer.address
         )
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -757,7 +757,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, getBigNumber(50))
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -775,15 +775,15 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, false)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, false)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
@@ -793,7 +793,7 @@ describe("Tribute", function () {
 
     it("Should return NFT tribute to proposer if proposal unsuccessful", async function () {
         // Instantiate purchaseToken
-        let PurchaseToken = await ethers.getContractFactory("KaliNFT")
+        let PurchaseToken = await ethers.getContractFactory("SportsClubNFT")
         let purchaseToken = await PurchaseToken.deploy(
             "NFT",
             "NFT"
@@ -801,8 +801,8 @@ describe("Tribute", function () {
         await purchaseToken.deployed()
         await purchaseToken.mint(proposer.address, 1, "DOCS")
 
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -817,7 +817,7 @@ describe("Tribute", function () {
         await purchaseToken.approve(tribute.address, 1)
 
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -838,15 +838,15 @@ describe("Tribute", function () {
             tribute.address
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, false)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, false)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await purchaseToken.balanceOf(tribute.address)).to.equal(
             0
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             0
         )
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
@@ -858,8 +858,8 @@ describe("Tribute", function () {
     })
 
     it("Should prevent tribute return to proposer if proposal not processed", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -872,7 +872,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -888,22 +888,22 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, true)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        expect(await tribute.releaseTributeProposal(kali.address, 1).should.be.reverted)
-        expect(await tribute.releaseTributeProposal(kali.address, 2).should.be.reverted)
+        expect(await tribute.releaseTributeProposal(sportsclub.address, 1).should.be.reverted)
+        expect(await tribute.releaseTributeProposal(sportsclub.address, 2).should.be.reverted)
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
     })
 
     it("Should prevent release call if already completed", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -916,7 +916,7 @@ describe("Tribute", function () {
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
-            kali.address,
+            sportsclub.address,
             0,
             "TRIBUTE",
             [proposer.address],
@@ -932,17 +932,17 @@ describe("Tribute", function () {
             getBigNumber(50)
         )
 
-        await kali.sponsorProposal(1)
-        await kali.vote(1, false)
+        await sportsclub.sponsorProposal(1)
+        await sportsclub.vote(1, false)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await tribute.releaseTributeProposal(kali.address, 1)
+        await sportsclub.processProposal(1)
+        await tribute.releaseTributeProposal(sportsclub.address, 1)
         expect(await ethers.provider.getBalance(tribute.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await tribute.releaseTributeProposal(kali.address, 1).should.be.reverted)
+        expect(await tribute.releaseTributeProposal(sportsclub.address, 1).should.be.reverted)
     })
 })

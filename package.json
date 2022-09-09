@@ -1,7 +1,7 @@
 {
-  "name": "kali-contracts",
+  "name": "sportsclub-contracts",
   "version": "1.0.0",
-  "description": "Smart Contracts for KaliDAO ",
+  "description": "Smart Contracts for SportsClubDAO ",
   "main": "index.js",
   "scripts": {
     "clean": "hardhat clean",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kalidao/kali-contracts.git"
+    "url": "git+https://github.com/sportsclubdao/sportsclub-contracts.git"
   },
   "author": "Robert Campbell",
   "license": "AGPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/kalidao/kali-contracts/issues"
+    "url": "https://github.com/sportsclubdao/sportsclub-contracts/issues"
   },
-  "homepage": "https://github.com/kalidao/kali-contracts#readme",
+  "homepage": "https://github.com/sportsclubdao/sportsclub-contracts#readme",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-waffle": "^2.0.1",

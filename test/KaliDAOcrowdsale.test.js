@@ -16,8 +16,8 @@ async function advanceTime(time) {
 }
 
 describe("Crowdsale", function () {
-    let Kali // KaliDAO contract
-    let kali // KaliDAO contract instance
+    let SportsClub // SportsClubDAO contract
+    let sportsclub // SportsClubDAO contract instance
     let PurchaseToken // PurchaseToken contract
     let purchaseToken // PurchaseToken contract instance
     let Whitelist // Whitelist contract
@@ -31,11 +31,11 @@ describe("Crowdsale", function () {
     beforeEach(async () => {
       ;[proposer, alice, bob] = await ethers.getSigners()
   
-      Kali = await ethers.getContractFactory("KaliDAO")
-      kali = await Kali.deploy()
-      await kali.deployed()
+      SportsClub = await ethers.getContractFactory("SportsClubDAO")
+      sportsclub = await SportsClub.deploy()
+      await sportsclub.deployed()
 
-      PurchaseToken = await ethers.getContractFactory("KaliERC20")
+      PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
       purchaseToken = await PurchaseToken.deploy()
       await purchaseToken.deployed()
       await purchaseToken.init(
@@ -48,18 +48,18 @@ describe("Crowdsale", function () {
         proposer.address
       )
 
-      Whitelist = await ethers.getContractFactory("KaliAccessManager")
+      Whitelist = await ethers.getContractFactory("SportsClubAccessManager")
       whitelist = await Whitelist.deploy()
       await whitelist.deployed()
       
-      Crowdsale = await ethers.getContractFactory("KaliDAOcrowdsale")
+      Crowdsale = await ethers.getContractFactory("SportsClubDAOcrowdsale")
       crowdsale = await Crowdsale.deploy(whitelist.address, wethAddress)
       await crowdsale.deployed()
     })
   
     it("Should allow unrestricted ETH crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -85,29 +85,29 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
         await crowdsale 
             .connect(alice)
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(100)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(100))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(100))
     })
 
     it("Should allow restricted ETH crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -140,29 +140,29 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
         await crowdsale 
             .connect(alice)
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(100)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(100))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(100))
     })
 
     it("Should forbid non-whitelisted participation in ETH crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -195,29 +195,29 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
         expect(await crowdsale 
             .connect(alice)
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         }).should.be.reverted)
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(0))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(0))
     })
 
     it("Should enforce personal purchase limit in ETH crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -250,27 +250,27 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
         expect(await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         }).should.be.reverted)
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
     })
 
     it("Should enforce total purchase limit in ETH crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -303,29 +303,29 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         })
         expect(await crowdsale
             .connect(alice) 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         }).should.be.reverted)
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(0))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(0))
     })
 
     it("Should allow unrestricted ERC20 crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -353,23 +353,23 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await crowdsale.callExtension(kali.address, getBigNumber(50))
+        await sportsclub.processProposal(1)
+        await crowdsale.callExtension(sportsclub.address, getBigNumber(50))
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
     })
 
     it("Should allow restricted ERC20 crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -404,23 +404,23 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await crowdsale.callExtension(kali.address, getBigNumber(50))
+        await sportsclub.processProposal(1)
+        await crowdsale.callExtension(sportsclub.address, getBigNumber(50))
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
     })
 
     it("Should forbid non-whitelisted participation in ERC20 crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -455,23 +455,23 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        expect(await crowdsale.callExtension(kali.address, getBigNumber(50)).should.be.reverted)
+        await sportsclub.processProposal(1)
+        expect(await crowdsale.callExtension(sportsclub.address, getBigNumber(50)).should.be.reverted)
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(1000)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(10))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(10))
     })
 
     it("Should enforce personal purchase limit in ERC20 crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -506,24 +506,24 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await crowdsale.callExtension(kali.address, getBigNumber(50))
-        expect(await crowdsale.callExtension(kali.address, getBigNumber(50)).should.be.reverted)
+        await sportsclub.processProposal(1)
+        await crowdsale.callExtension(sportsclub.address, getBigNumber(50))
+        expect(await crowdsale.callExtension(sportsclub.address, getBigNumber(50)).should.be.reverted)
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
     })
 
     it("Should enforce total purchase limit in ERC20 crowdsale", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -558,25 +558,25 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
-        await crowdsale.callExtension(kali.address, getBigNumber(50))
-        expect(await crowdsale.connect(alice.address).callExtension(kali.address, getBigNumber(50)).should.be.reverted)
+        await sportsclub.processProposal(1)
+        await crowdsale.callExtension(sportsclub.address, getBigNumber(50))
+        expect(await crowdsale.connect(alice.address).callExtension(sportsclub.address, getBigNumber(50)).should.be.reverted)
         expect(await purchaseToken.balanceOf(proposer.address)).to.equal(
             getBigNumber(950)
         )
-        expect(await purchaseToken.balanceOf(kali.address)).to.equal(
+        expect(await purchaseToken.balanceOf(sportsclub.address)).to.equal(
             getBigNumber(50)
         )
-        expect(await kali.balanceOf(proposer.address)).to.equal(getBigNumber(110))
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(0))
+        expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(110))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(0))
     })
 
     it("Should enforce purchase time limit", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -602,25 +602,25 @@ describe("Crowdsale", function () {
                 ]
         )
 
-        await kali.propose(9, "TEST", [crowdsale.address], [1], [payload])
-        await kali.vote(1, true)
+        await sportsclub.propose(9, "TEST", [crowdsale.address], [1], [payload])
+        await sportsclub.vote(1, true)
         await advanceTime(35)
-        await kali.processProposal(1)
+        await sportsclub.processProposal(1)
         await advanceTime(1672174799)
         expect(await crowdsale 
-            .callExtension(kali.address, getBigNumber(50), {
+            .callExtension(sportsclub.address, getBigNumber(50), {
                 value: getBigNumber(50),
         }).should.be.reverted)
-        expect(await ethers.provider.getBalance(kali.address)).to.equal(
+        expect(await ethers.provider.getBalance(sportsclub.address)).to.equal(
             getBigNumber(0)
         )
     })
 
-    it("Should allow Kali fee to be set", async function () {  
-        await crowdsale.setKaliRate(5)
+    it("Should allow SportsClub fee to be set", async function () {  
+        await crowdsale.setSportsClubRate(5)
     })
 
-    it("Should forbid non-owner from setting Kali fee", async function () {
-        expect(await crowdsale.connect(alice.address).setKaliRate(5).should.be.reverted)
+    it("Should forbid non-owner from setting SportsClub fee", async function () {
+        expect(await crowdsale.connect(alice.address).setSportsClubRate(5).should.be.reverted)
     })
 })

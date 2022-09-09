@@ -2,7 +2,7 @@
 pragma solidity >=0.8.4;
 
 /// @notice Single owner access control contract
-abstract contract KaliOwnable {
+abstract contract SportsClubOwnable {
     event OwnershipTransferred(address indexed from, address indexed to);
     event ClaimTransferred(address indexed from, address indexed to);
 

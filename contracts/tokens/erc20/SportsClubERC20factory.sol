@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity >=0.8.4;
 
-import './KaliERC20.sol';
+import './SportsClubERC20.sol';
 import '../../utils/Multicall.sol';
 
-/// @notice Factory to deploy Kali ERC20.
-contract KaliERC20factory is Multicall {
+/// @notice Factory to deploy SportsClub ERC20.
+contract SportsClubERC20factory is Multicall {
     event ERC20deployed(
-        KaliERC20 indexed kaliERC20, 
+        SportsClubERC20 indexed sportsclubERC20, 
         string name, 
         string symbol, 
         string details, 
@@ -25,7 +25,7 @@ contract KaliERC20factory is Multicall {
         erc20Master = erc20Master_;
     }
     
-    function deployKaliERC20(
+    function deploySportsClubERC20(
         string calldata name_,
         string memory symbol_,
         string calldata details_,
@@ -33,10 +33,10 @@ contract KaliERC20factory is Multicall {
         uint256[] calldata amounts_,
         bool paused_,
         address owner_
-    ) public virtual returns (KaliERC20 kaliERC20) {
-        kaliERC20 = KaliERC20(_cloneAsMinimalProxy(erc20Master, name_));
+    ) public virtual returns (SportsClubERC20 sportsclubERC20) {
+        sportsclubERC20 = SportsClubERC20(_cloneAsMinimalProxy(erc20Master, name_));
         
-        kaliERC20.init(
+        sportsclubERC20.init(
             name_,
             symbol_,
             details_,
@@ -46,7 +46,7 @@ contract KaliERC20factory is Multicall {
             owner_
         );
 
-        emit ERC20deployed(kaliERC20, name_, symbol_, details_, accounts_, amounts_, paused_, owner_);
+        emit ERC20deployed(sportsclubERC20, name_, symbol_, details_, accounts_, amounts_, paused_, owner_);
     }
 
     /// @dev modified from Aelin (https://github.com/AelinXYZ/aelin/blob/main/contracts/MinimalProxyFactory.sol)

@@ -10,8 +10,8 @@ function getBigNumber(amount, decimals = 18) {
 }
 
 describe("Deployer", function () {
-    let Kali // KaliDAO contract
-    let kali // KaliDAO contract instance
+    let SportsClub // SportsClubDAO contract
+    let sportsclub // SportsClubDAO contract instance
     let alice // signerA
     let bob // signerB
     let carol // signerC
@@ -19,14 +19,14 @@ describe("Deployer", function () {
     beforeEach(async () => {
       ;[alice, bob, carol] = await ethers.getSigners()
   
-      Kali = await ethers.getContractFactory("KaliDAO")
-      kali = await Kali.deploy()
-      await kali.deployed()
+      SportsClub = await ethers.getContractFactory("SportsClubDAO")
+      sportsclub = await SportsClub.deploy()
+      await sportsclub.deployed()
     })
   
-    it("Should deploy Kali DAO", async function () {
-        // Instantiate KaliDAO
-        await kali.init(
+    it("Should deploy SportsClub DAO", async function () {
+        // Instantiate SportsClubDAO
+        await sportsclub.init(
           "KALI",
           "KALI",
           "DOCS",
@@ -38,6 +38,6 @@ describe("Deployer", function () {
           [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         )
 
-        expect(await kali.balanceOf(alice.address)).to.equal(getBigNumber(10))
+        expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(10))
     })
   })

@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity >=0.8.4;
 
-import {IKaliShareManager} from "../../interfaces/IKaliShareManager.sol";
+import {ISportsClubShareManager} from "../../interfaces/ISportsClubShareManager.sol";
 
 import {ReentrancyGuard} from "../../utils/ReentrancyGuard.sol";
 
-/// @notice Kali DAO share manager extension
-contract KaliShareManager is ReentrancyGuard {
+/// @notice SportsClub DAO share manager extension
+contract SportsClubShareManager is ReentrancyGuard {
     /// -----------------------------------------------------------------------
     /// Events
     /// -----------------------------------------------------------------------
@@ -76,12 +76,12 @@ contract KaliShareManager is ReentrancyGuard {
             ) = abi.decode(extensionData[i], (address, uint256, bool));
 
             if (mint) {
-                IKaliShareManager(dao).mintShares(
+                ISportsClubShareManager(dao).mintShares(
                     account,
                     amount
                 );
             } else {
-                IKaliShareManager(dao).burnShares(
+                ISportsClubShareManager(dao).burnShares(
                     account,
                     amount
                 );

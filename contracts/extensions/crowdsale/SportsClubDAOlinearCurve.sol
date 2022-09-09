@@ -3,18 +3,18 @@ pragma solidity >=0.8.4;
 
 import {SafeTransferLib} from '../../libraries/SafeTransferLib.sol';
 
-import {IKaliAccessManager} from '../../interfaces/IKaliAccessManager.sol';
-import {IKaliShareManager} from '../../interfaces/IKaliShareManager.sol';
+import {ISportsClubAccessManager} from '../../interfaces/ISportsClubAccessManager.sol';
+import {ISportsClubShareManager} from '../../interfaces/ISportsClubShareManager.sol';
 import {IERC20minimal} from '../../interfaces/IERC20minimal.sol';
 import {IERC20permit} from '../../interfaces/IERC20permit.sol';
 
-import {KaliOwnable} from '../../access/KaliOwnable.sol';
+import {SportsClubOwnable} from '../../access/SportsClubOwnable.sol';
 
 import {Multicall} from '../../utils/Multicall.sol';
 import {ReentrancyGuard} from '../../utils/ReentrancyGuard.sol';
 
 /// @notice Linear crowdsale contract that receives ETH or ERC-20 to mint registered DAO tokens, including merkle access lists
-contract KaliDAOlinearCurve is KaliOwnable, Multicall, ReentrancyGuard {
+contract SportsClubDAOlinearCurve is SportsClubOwnable, Multicall, ReentrancyGuard {
     using SafeTransferLib for address;
 
     event ExtensionSet(
@@ -35,7 +35,7 @@ contract KaliDAOlinearCurve is KaliOwnable, Multicall, ReentrancyGuard {
 
     error PurchaseLimit();
 
-    IKaliAccessManager private immutable accessManager;
+    ISportsClubAccessManager private immutable accessManager;
 
     mapping(address => Crowdsale) public crowdsales;
 
@@ -48,7 +48,7 @@ contract KaliDAOlinearCurve is KaliOwnable, Multicall, ReentrancyGuard {
         uint32 saleEnds;
     }
 
-    constructor(IKaliAccessManager accessManager_) {
+    constructor(ISportsClubAccessManager accessManager_) {
         accessManager = accessManager_;
     }
 
