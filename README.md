@@ -122,23 +122,23 @@ SportsClub adopts standard security conventions, including a [`ReentrancyGuard`]
 
 ### Goerli
 
-SportsClubDAO: [`0x27CDcD0D8BE5d04ca57dc699ebfEC8086E625656`](https://rinkeby.etherscan.io/address/0x27CDcD0D8BE5d04ca57dc699ebfEC8086E625656#code)
+SportsClubDAO: [`0x27CDcD0D8BE5d04ca57dc699ebfEC8086E625656`](https://goerli.etherscan.io/address/0x27CDcD0D8BE5d04ca57dc699ebfEC8086E625656#code)
 
-SportsClubERC20: [`0x56277a2C0bc8874BFb4f533Ec9bF4bf544C7F03a`](https://rinkeby.etherscan.io/address/0x56277a2C0bc8874BFb4f533Ec9bF4bf544C7F03a#code)
+SportsClubERC20: [`0x56277a2C0bc8874BFb4f533Ec9bF4bf544C7F03a`](https://goerli.etherscan.io/address/0x56277a2C0bc8874BFb4f533Ec9bF4bf544C7F03a#code)
 
-SportsClubCoRicardianLLC: [`0x85651Db659Fd88D554e9E4Fc99001D0d8B77bC06`](https://rinkeby.etherscan.io/address/0x85651Db659Fd88D554e9E4Fc99001D0d8B77bC06#code)
+SportsClubCoRicardianLLC: [`0x85651Db659Fd88D554e9E4Fc99001D0d8B77bC06`](https://goerli.etherscan.io/address/0x85651Db659Fd88D554e9E4Fc99001D0d8B77bC06#code)
 
-SportsClubDAOfactory: [`0x8b6f72dF0d329D529255f8C56Dd0A8B8078E49e7`](https://rinkeby.etherscan.io/address/0x8b6f72dF0d329D529255f8C56Dd0A8B8078E49e7#code)
+SportsClubDAOfactory: [`0x8b6f72dF0d329D529255f8C56Dd0A8B8078E49e7`](https://goerli.etherscan.io/address/0x8b6f72dF0d329D529255f8C56Dd0A8B8078E49e7#code)
 
-SportsClubDAOtribute: [`0xa1f8e28Cf740322C21E6Fd16Dcc81cc7E9e551b1`](https://rinkeby.etherscan.io/address/0xa1f8e28Cf740322C21E6Fd16Dcc81cc7E9e551b1#code)
+SportsClubDAOtribute: [`0xa1f8e28Cf740322C21E6Fd16Dcc81cc7E9e551b1`](https://goerli.etherscan.io/address/0xa1f8e28Cf740322C21E6Fd16Dcc81cc7E9e551b1#code)
 
-SportsClubAccessManager: [`0x063B17F3584f5E60733587a0574948Eeb0bC61C3`](https://rinkeby.etherscan.io/address/0x063B17F3584f5E60733587a0574948Eeb0bC61C3#code)
+SportsClubAccessManager: [`0x063B17F3584f5E60733587a0574948Eeb0bC61C3`](https://goerli.etherscan.io/address/0x063B17F3584f5E60733587a0574948Eeb0bC61C3#code)
 
-SportsClubDAOcrowdsale: [`0x5b86a60c0c1699DF6798fc431A5112C4A2f01bA6`](https://rinkeby.etherscan.io/address/0x5b86a60c0c1699DF6798fc431A5112C4A2f01bA6#code)
+SportsClubDAOcrowdsale: [`0x5b86a60c0c1699DF6798fc431A5112C4A2f01bA6`](https://goerli.etherscan.io/address/0x5b86a60c0c1699DF6798fc431A5112C4A2f01bA6#code)
 
-SportsClubDAOredemption: [`0x9EA0f662F05B77fB18290585c6B447aAEAB009b2`](https://rinkeby.etherscan.io/address/0x9EA0f662F05B77fB18290585c6B447aAEAB009b2#code)
+SportsClubDAOredemption: [`0x9EA0f662F05B77fB18290585c6B447aAEAB009b2`](https://goerli.etherscan.io/address/0x9EA0f662F05B77fB18290585c6B447aAEAB009b2#code)
 
-SportsClubERC20factory: [`0x3e26ad33559eefbc5C157da5807908e71031f8c9`](https://rinkeby.etherscan.io/address/0x3e26ad33559eefbc5C157da5807908e71031f8c9#code)
+SportsClubERC20factory: [`0x3e26ad33559eefbc5C157da5807908e71031f8c9`](https://goerli.etherscan.io/address/0x3e26ad33559eefbc5C157da5807908e71031f8c9#code)
 
 ### Rinkeby (Kali)
 
