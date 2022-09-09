@@ -27,8 +27,8 @@ describe("Deployer", function () {
     it("Should deploy SportsClub DAO", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],

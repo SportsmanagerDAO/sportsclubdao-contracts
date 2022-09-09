@@ -39,8 +39,8 @@ describe("Crowdsale", function () {
       purchaseToken = await PurchaseToken.deploy()
       await purchaseToken.deployed()
       await purchaseToken.init(
-        "KALI",
-        "KALI",
+        "SPORTSCLUB",
+        "SPORTSCLUB",
         "DOCS",
         [proposer.address],
         [getBigNumber(1000)],
@@ -60,8 +60,8 @@ describe("Crowdsale", function () {
     it("Should allow unrestricted ETH crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -108,8 +108,8 @@ describe("Crowdsale", function () {
     it("Should allow restricted ETH crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -163,8 +163,8 @@ describe("Crowdsale", function () {
     it("Should forbid non-whitelisted participation in ETH crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -218,8 +218,8 @@ describe("Crowdsale", function () {
     it("Should enforce personal purchase limit in ETH crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -271,8 +271,8 @@ describe("Crowdsale", function () {
     it("Should enforce total purchase limit in ETH crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -326,8 +326,8 @@ describe("Crowdsale", function () {
     it("Should allow unrestricted ERC20 crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -370,8 +370,8 @@ describe("Crowdsale", function () {
     it("Should allow restricted ERC20 crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -421,8 +421,8 @@ describe("Crowdsale", function () {
     it("Should forbid non-whitelisted participation in ERC20 crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -472,8 +472,8 @@ describe("Crowdsale", function () {
     it("Should enforce personal purchase limit in ERC20 crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -524,8 +524,8 @@ describe("Crowdsale", function () {
     it("Should enforce total purchase limit in ERC20 crowdsale", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -577,8 +577,8 @@ describe("Crowdsale", function () {
     it("Should enforce purchase time limit", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],

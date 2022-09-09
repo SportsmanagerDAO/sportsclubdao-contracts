@@ -39,8 +39,8 @@ describe("Tribute", function () {
     it("Should process tribute proposal directly", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -92,8 +92,8 @@ describe("Tribute", function () {
     it("Should process ETH tribute proposal", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -149,8 +149,8 @@ describe("Tribute", function () {
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
-            "KALI",
-            "KALI",
+            "SPORTSCLUB",
+            "SPORTSCLUB",
             "DOCS",
             [proposer.address],
             [getBigNumber(1000)],
@@ -160,8 +160,8 @@ describe("Tribute", function () {
 
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -230,8 +230,8 @@ describe("Tribute", function () {
 
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -297,8 +297,8 @@ describe("Tribute", function () {
     it("Should allow ETH tribute proposal cancellation", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -345,8 +345,8 @@ describe("Tribute", function () {
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
-            "KALI",
-            "KALI",
+            "SPORTSCLUB",
+            "SPORTSCLUB",
             "DOCS",
             [proposer.address],
             [getBigNumber(1000)],
@@ -355,8 +355,8 @@ describe("Tribute", function () {
         )
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -423,8 +423,8 @@ describe("Tribute", function () {
 
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -488,8 +488,8 @@ describe("Tribute", function () {
     it("Should prevent cancellation by non-proposer of tribute proposal", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -522,8 +522,8 @@ describe("Tribute", function () {
     it("Should prevent cancellation of sponsored ETH tribute proposal", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -561,8 +561,8 @@ describe("Tribute", function () {
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
-            "KALI",
-            "KALI",
+            "SPORTSCLUB",
+            "SPORTSCLUB",
             "DOCS",
             [proposer.address],
             [getBigNumber(1000)],
@@ -571,8 +571,8 @@ describe("Tribute", function () {
         )
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -630,8 +630,8 @@ describe("Tribute", function () {
 
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -686,8 +686,8 @@ describe("Tribute", function () {
     it("Should return ETH tribute to proposer if proposal unsuccessful", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -733,8 +733,8 @@ describe("Tribute", function () {
         purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
-            "KALI",
-            "KALI",
+            "SPORTSCLUB",
+            "SPORTSCLUB",
             "DOCS",
             [proposer.address],
             [getBigNumber(1000)],
@@ -743,8 +743,8 @@ describe("Tribute", function () {
         )
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -803,8 +803,8 @@ describe("Tribute", function () {
 
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -860,8 +860,8 @@ describe("Tribute", function () {
     it("Should prevent tribute return to proposer if proposal not processed", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],
@@ -904,8 +904,8 @@ describe("Tribute", function () {
     it("Should prevent release call if already completed", async function () {
         // Instantiate SportsClubDAO
         await sportsclub.init(
-          "KALI",
-          "KALI",
+          "SPORTSCLUB",
+          "SPORTSCLUB",
           "DOCS",
           false,
           [],

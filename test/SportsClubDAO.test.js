@@ -35,8 +35,8 @@ describe("SportsClubDAO", function () {
 
   it("Should initialize with correct params", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -45,8 +45,8 @@ describe("SportsClubDAO", function () {
       [getBigNumber(10)],
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1]
     )
-    expect(await sportsclub.name()).to.equal("KALI")
-    expect(await sportsclub.symbol()).to.equal("KALI")
+    expect(await sportsclub.name()).to.equal("SPORTSCLUB")
+    expect(await sportsclub.symbol()).to.equal("SPORTSCLUB")
     expect(await sportsclub.docs()).to.equal("DOCS")
     expect(await sportsclub.paused()).to.equal(false)
     expect(await sportsclub.balanceOf(proposer.address)).to.equal(getBigNumber(10))
@@ -69,8 +69,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if initialization gov settings exceed bounds", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -80,8 +80,8 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1, 1]
     ).should.be.reverted)
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -93,8 +93,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if initialization arrays don't match", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [bob.address],
@@ -104,8 +104,8 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ).should.be.reverted)
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -117,8 +117,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if already initialized", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -128,8 +128,8 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ))
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -141,8 +141,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if voting period is initialized null or longer than year", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -152,8 +152,8 @@ describe("SportsClubDAO", function () {
       [0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ).should.be.reverted)
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -165,8 +165,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if grace period is initialized longer than year", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -178,8 +178,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if quorum is initialized greater than 100", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -191,8 +191,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if supermajority is initialized less than 52 or greater than 100", async function () {
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -202,8 +202,8 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ).should.be.reverted)
     expect(await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -215,8 +215,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if proposal arrays don't match", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -235,8 +235,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if period proposal is for null or longer than year", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -270,8 +270,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if grace proposal is for longer than year", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -298,8 +298,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if quorum proposal is for greater than 100", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -326,8 +326,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if supermajority proposal is for less than 52 or greater than 100", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -361,8 +361,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert if type proposal has proposal type greater than 10, vote type greater than 3, or setting length isn't 2", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -403,8 +403,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should allow proposer to cancel unsponsored proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -424,8 +424,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid non-proposer from cancelling unsponsored proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -445,8 +445,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid proposer from cancelling sponsored proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -467,8 +467,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid cancelling non-existent proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -488,8 +488,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should allow sponsoring proposal and processing", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -513,8 +513,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid non-member from sponsoring proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -534,8 +534,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid sponsoring non-existent or processed proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -561,8 +561,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid sponsoring an already sponsored proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -583,8 +583,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should allow self-sponsorship by a member", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -604,8 +604,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid a member from voting again on proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -626,8 +626,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid voting after period ends", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -648,8 +648,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing before voting period ends", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -671,8 +671,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing before grace period ends", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -694,8 +694,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process membership proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -718,8 +718,8 @@ describe("SportsClubDAO", function () {
   })
   it("voteBySig should revert if the signature is invalid", async () => {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -736,7 +736,7 @@ describe("SportsClubDAO", function () {
   })
   it("Should process membership proposal via voteBySig", async () => {
     const domain = {
-      name: "KALI",
+      name: "SPORTSCLUB",
       version: "1",
       chainId: 31337,
       verifyingContract: sportsclub.address,
@@ -755,8 +755,8 @@ describe("SportsClubDAO", function () {
     }
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -777,8 +777,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process burn (eviction) proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -798,8 +798,8 @@ describe("SportsClubDAO", function () {
     let sportsclubERC20 = await SportsClubERC20.deploy()
     await sportsclubERC20.deployed()
     await sportsclubERC20.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       [sportsclub.address],
       [getBigNumber(100)],
@@ -811,8 +811,8 @@ describe("SportsClubDAO", function () {
       getBigNumber(15)
     ])
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -839,8 +839,8 @@ describe("SportsClubDAO", function () {
     let sportsclubERC20 = await SportsClubERC20.deploy()
     await sportsclubERC20.deployed()
     await sportsclubERC20.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       [sportsclub.address],
       [getBigNumber(100)],
@@ -860,8 +860,8 @@ describe("SportsClubDAO", function () {
       "hello",
     ])
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -887,8 +887,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process voting period proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -906,8 +906,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process grace period proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -925,8 +925,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process quorum proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -943,8 +943,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process supermajority proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -961,8 +961,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process type proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -985,8 +985,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process pause proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1003,8 +1003,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process extension proposal - General", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1021,8 +1021,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should toggle extension proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1040,8 +1040,8 @@ describe("SportsClubDAO", function () {
   it("Should process extension proposal - SportsClubDAOcrowdsale with ETH", async function () {
     // Instantiate SportsClubDAO
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1102,8 +1102,8 @@ describe("SportsClubDAO", function () {
     let purchaseToken = await PurchaseToken.deploy()
     await purchaseToken.deployed()
     await purchaseToken.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       [alice.address],
       [getBigNumber(1000)],
@@ -1113,8 +1113,8 @@ describe("SportsClubDAO", function () {
     await purchaseToken.deployed()
     // Instantiate SportsClubDAO
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1172,8 +1172,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process escape proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1209,8 +1209,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should process docs proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1227,8 +1227,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing a non-existent proposal", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1241,8 +1241,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing a proposal that was already processed", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1265,8 +1265,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing a proposal before voting period ends", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1288,8 +1288,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid processing a proposal before previous processes", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1333,8 +1333,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid calling a non-whitelisted extension", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1347,8 +1347,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should forbid non-whitelisted extension calling DAO", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1364,8 +1364,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1385,8 +1385,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1404,8 +1404,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1423,8 +1423,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1440,8 +1440,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1459,8 +1459,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1478,8 +1478,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1498,8 +1498,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1516,8 +1516,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1535,8 +1535,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1554,8 +1554,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1570,8 +1570,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should not allow vote tally after current timestamp", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1586,8 +1586,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should list member as 'delegate' if no delegation to others", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1600,8 +1600,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should match current votes to undelegated balance", async function () {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1617,8 +1617,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1643,8 +1643,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver, receiver2] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1668,8 +1668,8 @@ describe("SportsClubDAO", function () {
     ;[sender, receiver, receiver2] = await ethers.getSigners()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       false,
       [],
@@ -1691,8 +1691,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should allow permit if the signature is valid", async () => {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1702,7 +1702,7 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     )
     const domain = {
-      name: "KALI",
+      name: "SPORTSCLUB",
       version: "1",
       chainId: 31337,
       verifyingContract: sportsclub.address,
@@ -1757,8 +1757,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert permit if the signature is invalid", async () => {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1774,8 +1774,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should allow delegateBySig if the signature is valid", async () => {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1785,7 +1785,7 @@ describe("SportsClubDAO", function () {
       [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     )
     const domain = {
-      name: "KALI",
+      name: "SPORTSCLUB",
       version: "1",
       chainId: 31337,
       verifyingContract: sportsclub.address,
@@ -1810,8 +1810,8 @@ describe("SportsClubDAO", function () {
   })
   it("Should revert delegateBySig if the signature is invalid", async () => {
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1834,8 +1834,8 @@ describe("SportsClubDAO", function () {
     await reentrant.deployed()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [],
@@ -1862,8 +1862,8 @@ describe("SportsClubDAO", function () {
     await callMock.deployed()
 
     await sportsclub.init(
-      "KALI",
-      "KALI",
+      "SPORTSCLUB",
+      "SPORTSCLUB",
       "DOCS",
       true,
       [callMock.address],
