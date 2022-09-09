@@ -1,20 +1,21 @@
-const { BigNumber } = require("ethers")
-const chai = require("chai")
-const { expect } = require("chai")
+import { ethers } from "hardhat";
+import { BigNumber } from "ethers";
+import chai from "chai";
+import { expect } from "chai";
 
 chai.should()
 
 // Defaults to e18 using amount * 10^18
-function getBigNumber(amount, decimals = 18) {
+function getBigNumber(amount: any, decimals = 18) {
   return BigNumber.from(amount).mul(BigNumber.from(10).pow(decimals))
 }
 
 describe("Deployer", function () {
-    let SportsClub // SportsClubDAO contract
-    let sportsclub // SportsClubDAO contract instance
-    let alice // signerA
-    let bob // signerB
-    let carol // signerC
+    let SportsClub: any // SportsClubDAO contract
+    let sportsclub: any // SportsClubDAO contract instance
+    let alice: any // signerA
+    let bob: any // signerB
+    let carol: any // signerC
   
     beforeEach(async () => {
       ;[alice, bob, carol] = await ethers.getSigners()

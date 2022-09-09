@@ -1,32 +1,33 @@
-const { BigNumber } = require("ethers")
-const chai = require("chai")
-const { expect } = require("chai")
-
-const wethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+import { ethers } from "hardhat";
+import { BigNumber } from "ethers";
+import chai from "chai";
+import { expect } from "chai";
 
 chai.should()
 
 // Defaults to e18 using amount * 10^18
-function getBigNumber(amount, decimals = 18) {
+function getBigNumber(amount: any, decimals = 18) {
   return BigNumber.from(amount).mul(BigNumber.from(10).pow(decimals))
 }
 
-async function advanceTime(time) {
+async function advanceTime(time: any) {
   await ethers.provider.send("evm_increaseTime", [time])
 }
 
 describe("Crowdsale", function () {
-    let SportsClub // SportsClubDAO contract
-    let sportsclub // SportsClubDAO contract instance
-    let PurchaseToken // PurchaseToken contract
-    let purchaseToken // PurchaseToken contract instance
-    let Whitelist // Whitelist contract
-    let whitelist // Whitelist contract instance
-    let Crowdsale // Crowdsale contract
-    let crowdsale // Crowdsale contract instance
-    let proposer // signerA
-    let alice // signerB
-    let bob // signerC
+    const wethAddress: any = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+
+    let SportsClub: any // SportsClubDAO contract
+    let sportsclub: any // SportsClubDAO contract instance
+    let PurchaseToken: any // PurchaseToken contract
+    let purchaseToken: any // PurchaseToken contract instance
+    let Whitelist: any // Whitelist contract
+    let whitelist: any // Whitelist contract instance
+    let Crowdsale: any // Crowdsale contract
+    let crowdsale: any // Crowdsale contract instance
+    let proposer: any // signerA
+    let alice: any // signerB
+    let bob: any // signerC
   
     beforeEach(async () => {
       ;[proposer, alice, bob] = await ethers.getSigners()

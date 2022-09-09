@@ -1,4 +1,6 @@
-require("@nomiclabs/hardhat-waffle");
+import "@nomiclabs/hardhat-waffle";
+import '@nomiclabs/hardhat-etherscan';
+import '@typechain/hardhat';
 
 
 // You need to export an object to set up your config

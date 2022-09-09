@@ -1,26 +1,27 @@
-const { BigNumber } = require("ethers")
-const chai = require("chai")
-const { expect } = require("chai")
+import { ethers } from "hardhat";
+import { BigNumber } from "ethers";
+import chai from "chai";
+import { expect } from "chai";
 
 chai.should()
 
 // Defaults to e18 using amount * 10^18
-function getBigNumber(amount, decimals = 18) {
+function getBigNumber(amount: any, decimals = 18) {
   return BigNumber.from(amount).mul(BigNumber.from(10).pow(decimals))
 }
 
-async function advanceTime(time) {
+async function advanceTime(time: any) {
   await ethers.provider.send("evm_increaseTime", [time])
 }
 
 describe("Tribute", function () {
-    let SportsClub // SportsClubDAO contract
-    let sportsclub // SportsClubDAO contract instance
-    let Tribute // Tribute contract
-    let tribute // Tribute contract instance
-    let proposer // signerA
-    let alice // signerB
-    let bob // signerC
+    let SportsClub: any // SportsClubDAO contract
+    let sportsclub: any // SportsClubDAO contract instance
+    let Tribute: any // Tribute contract
+    let tribute: any // Tribute contract instance
+    let proposer: any // signerA
+    let alice: any // signerB
+    let bob: any // signerC
   
     beforeEach(async () => {
       ;[proposer, alice, bob] = await ethers.getSigners()
@@ -145,8 +146,8 @@ describe("Tribute", function () {
 
     it("Should process ERC20 tribute proposal", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
-        purchaseToken = await PurchaseToken.deploy()
+        let PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
+        let purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
             "SPORTSCLUB",
@@ -341,8 +342,8 @@ describe("Tribute", function () {
 
     it("Should allow ERC20 tribute proposal cancellation", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
-        purchaseToken = await PurchaseToken.deploy()
+        let PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
+        let purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
             "SPORTSCLUB",
@@ -557,8 +558,8 @@ describe("Tribute", function () {
 
     it("Should prevent cancellation of sponsored ERC20 tribute proposal", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
-        purchaseToken = await PurchaseToken.deploy()
+        let PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
+        let purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
             "SPORTSCLUB",
@@ -729,8 +730,8 @@ describe("Tribute", function () {
 
     it("Should return ERC20 tribute to proposer if proposal unsuccessful", async function () {
         // Instantiate purchaseToken
-        PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
-        purchaseToken = await PurchaseToken.deploy()
+        let PurchaseToken = await ethers.getContractFactory("SportsClubERC20")
+        let purchaseToken = await PurchaseToken.deploy()
         await purchaseToken.deployed()
         await purchaseToken.init(
             "SPORTSCLUB",
