@@ -1,5 +1,5 @@
 {
-  "name": "sportsclub-contracts",
+  "name": "@sportsclubdao/contracts",
   "version": "1.0.0",
   "description": "Smart Contracts for SportsClubDAO ",
   "main": "index.js",
