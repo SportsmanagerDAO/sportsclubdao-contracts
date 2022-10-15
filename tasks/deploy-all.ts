@@ -38,6 +38,7 @@ task("deploy-all", "Deploys every smart contract").setAction(
     await ricardianLLC.deployed()
     console.log('SportsClubCoRicardianLLC', ricardianLLC.address)
     
+    // The deployer will be act as rewardDistributor
     const SportsClubFactory: ContractFactory = await ethers.getContractFactory("SportsClubDAOfactory")
     const sportsclubFactory: Contract = await SportsClubFactory.deploy(proposer.address, ricardianLLC.address)
     await sportsclubFactory.deployed()

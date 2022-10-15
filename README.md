@@ -161,3 +161,9 @@ FixedERC20factory: [`0x6aBab95BB30710159B3e40bF6e049f935547D12b`](https://rinkeb
 Special thanks to [Auryn Macmillan](https://twitter.com/auryn_macmillan) and [James Young](https://twitter.com/jamesyoung) for comments on early iterations of `extensions` concept, [t11s](https://twitter.com/transmissions11) for gas-golfing tips, and [Q](https://twitter.com/quentinc137) for help understanding how to develop dapp.
 
 ![FEL8PaoXIAABPQK (1)](https://i.imgur.com/HL9UOUj.png)
+
+# Reward Distributor Mechanism
+`SportsClubDAOFactory` receives a ```address sportsClubMaster``` in the constructor.  
+The `sportsClubMaster` address acts as a rewardDistributor.  
+It is able to withdraw ETH balance in `SportsClubDAO` contracts.   
+The ETH balance will be relayed periodically to the `SportsManagerStream` contract which will distribute the ETH as rewards accordingly.  

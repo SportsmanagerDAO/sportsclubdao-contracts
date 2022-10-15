@@ -53,7 +53,8 @@ contract SportsClubDAOfactory is Multicall {
             extensionsData_,
             voters_, 
             shares_,  
-            govSettings_
+            govSettings_,
+            sportsclubMaster
         );
 
         bytes memory docs = bytes(docs_);

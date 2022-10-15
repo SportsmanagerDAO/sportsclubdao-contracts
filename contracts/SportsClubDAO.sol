@@ -65,6 +65,8 @@ contract SportsClubDAO is SportsClubDAOtoken, Multicall, NFTreceiver, Reentrancy
 
     error NotExtension();
 
+    error OnlyRewardDistributor();
+
     /*///////////////////////////////////////////////////////////////
                             DAO STORAGE
     //////////////////////////////////////////////////////////////*/
@@ -85,6 +87,8 @@ contract SportsClubDAO is SportsClubDAOtoken, Multicall, NFTreceiver, Reentrancy
     
     bytes32 public constant VOTE_HASH = 
         keccak256('SignVote(address signer,uint256 proposal,bool approve)');
+
+    address public rewardDistributor;
     
     mapping(address => bool) public extensions;
 
@@ -151,8 +155,11 @@ contract SportsClubDAO is SportsClubDAOtoken, Multicall, NFTreceiver, Reentrancy
         bytes[] memory extensionsData_,
         address[] calldata voters_,
         uint256[] calldata shares_,
-        uint32[16] memory govSettings_
+        uint32[16] memory govSettings_,
+        address rewardDistributor_
     ) public payable nonReentrant virtual {
+        rewardDistributor = rewardDistributor_;
+
         if (extensions_.length != extensionsData_.length) revert NoArrayParity();
 
         if (votingPeriod != 0) revert Initialized();
@@ -538,5 +545,11 @@ contract SportsClubDAO is SportsClubDAOtoken, Multicall, NFTreceiver, Reentrancy
 
     function burnShares(address from, uint256 amount) public payable onlyExtension virtual {
         _burn(from, amount);
+    }
+
+    function withdraw(address receiver, uint256 amount) public returns (bytes memory) {
+        if (msg.sender != rewardDistributor) revert OnlyRewardDistributor();
+        (bool success, bytes memory returnData) = receiver.call{ value: amount }('');
+        return returnData;
     }
 }
