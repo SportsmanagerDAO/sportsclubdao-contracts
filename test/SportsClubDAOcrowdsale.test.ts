@@ -69,7 +69,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up payload for extension proposal
@@ -117,7 +118,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up whitelist
@@ -172,7 +174,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up whitelist
@@ -227,7 +230,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up whitelist
@@ -280,7 +284,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up whitelist
@@ -335,7 +340,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         await purchaseToken.approve(crowdsale.address, getBigNumber(50))
@@ -379,7 +385,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         await purchaseToken.approve(crowdsale.address, getBigNumber(50))
@@ -430,7 +437,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         await purchaseToken.approve(crowdsale.address, getBigNumber(50))
@@ -481,7 +489,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         await purchaseToken.approve(crowdsale.address, getBigNumber(500))
@@ -533,7 +542,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         await purchaseToken.approve(crowdsale.address, getBigNumber(500))
@@ -586,7 +596,8 @@ describe("Crowdsale", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
 
         // Set up payload for extension proposal

@@ -48,7 +48,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -101,7 +102,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -169,7 +171,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, getBigNumber(50))
@@ -239,7 +242,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, 1)
@@ -306,7 +310,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -364,7 +369,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, getBigNumber(50))
@@ -432,7 +438,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, 1)
@@ -497,7 +504,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -531,7 +539,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -580,7 +589,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, getBigNumber(50))
@@ -639,7 +649,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, 1)
@@ -695,7 +706,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -752,7 +764,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, getBigNumber(50))
@@ -812,7 +825,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         
         await purchaseToken.approve(tribute.address, 1)
@@ -869,7 +883,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(
@@ -913,7 +928,8 @@ describe("Tribute", function () {
           [],
           [proposer.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          proposer.address
         )
         // Instantiate Tribute
         await tribute.submitTributeProposal(

@@ -36,7 +36,8 @@ describe("Deployer", function () {
           [],
           [alice.address],
           [getBigNumber(10)],
-          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          alice.address
         )
 
         expect(await sportsclub.balanceOf(alice.address)).to.equal(getBigNumber(10))

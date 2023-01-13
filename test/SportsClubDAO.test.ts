@@ -44,7 +44,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1],
+      proposer.address
     )
     expect(await sportsclub.name()).to.equal("SPORTSCLUB")
     expect(await sportsclub.symbol()).to.equal("SPORTSCLUB")
@@ -78,7 +79,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1, 1]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 1, 1],
+      proposer.address
     ).should.be.reverted)
     expect(await sportsclub.init(
       "SPORTSCLUB",
@@ -89,7 +91,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 9]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 9],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if initialization arrays don't match", async function () {
@@ -102,7 +105,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
     expect(await sportsclub.init(
       "SPORTSCLUB",
@@ -113,7 +117,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address, alice.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if already initialized", async function () {
@@ -126,7 +131,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ))
     expect(await sportsclub.init(
       "SPORTSCLUB",
@@ -137,7 +143,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if voting period is initialized null or longer than year", async function () {
@@ -150,7 +157,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
     expect(await sportsclub.init(
       "SPORTSCLUB",
@@ -161,7 +169,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [31536001, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [31536001, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if grace period is initialized longer than year", async function () {
@@ -174,7 +183,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 31536001, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 31536001, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if quorum is initialized greater than 100", async function () {
@@ -187,7 +197,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 101, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 101, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if supermajority is initialized less than 52 or greater than 100", async function () {
@@ -200,7 +211,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
     expect(await sportsclub.init(
       "SPORTSCLUB",
@@ -211,7 +223,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     ).should.be.reverted)
   })
   it("Should revert if proposal arrays don't match", async function () {
@@ -224,7 +237,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.propose(
       0,
@@ -244,7 +258,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -279,7 +294,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -307,7 +323,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -335,7 +352,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -370,7 +388,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -412,7 +431,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -433,7 +453,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -454,7 +475,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -476,7 +498,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -497,7 +520,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -522,7 +546,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -543,7 +568,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -570,7 +596,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.connect(alice).propose(
       0,
@@ -592,7 +619,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -613,7 +641,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -635,7 +664,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -657,7 +687,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -680,7 +711,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 30, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 30, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -703,7 +735,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -727,7 +760,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(0, "TEST", [alice.address], [0], [0x00])
     const rs = ethers.utils.formatBytes32String("rs")
@@ -764,7 +798,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(0, "TEST", [alice.address], [getBigNumber(1000)], [0x00])
 
@@ -786,7 +821,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(1, "TEST", [proposer.address], [getBigNumber(1)], [0x00])
     await sportsclub.vote(1, true)
@@ -820,7 +856,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(2, "TEST", [sportsclubERC20.address], [0], [payload])
     await sportsclub.vote(1, true)
@@ -869,7 +906,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       2,
@@ -896,7 +934,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.votingPeriod()).to.equal(30)
     await sportsclub.propose(3, "TEST", [proposer.address], [90], [0x00])
@@ -915,7 +954,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [90, 30, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [90, 30, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.gracePeriod()).to.equal(30)
     await sportsclub.propose(4, "TEST", [proposer.address], [60], [0x00])
@@ -934,7 +974,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(5, "TEST", [proposer.address], [100], [0x00])
     await sportsclub.vote(1, true)
@@ -952,7 +993,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(6, "TEST", [proposer.address], [52], [0x00])
     await sportsclub.vote(1, true)
@@ -970,7 +1012,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       7,
@@ -994,7 +1037,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(8, "TEST", [proposer.address], [0], [0x00])
     await sportsclub.vote(1, true)
@@ -1012,7 +1056,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(9, "TEST", [wethAddress], [0], [0x00])
     await sportsclub.vote(1, true)
@@ -1030,7 +1075,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(9, "TEST", [wethAddress], [1], [0x00])
     await sportsclub.vote(1, true)
@@ -1049,7 +1095,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // Instantiate SportsClubWhiteListManager
     let SportsClubWhitelistManager = await ethers.getContractFactory(
@@ -1122,7 +1169,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // Instantiate SportsClubWhiteListManager
     let SportsClubWhitelistManager = await ethers.getContractFactory(
@@ -1181,7 +1229,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -1218,7 +1267,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(11, "TEST", [], [], [])
     await sportsclub.vote(1, true)
@@ -1236,7 +1286,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.processProposal(2).should.be.reverted)
   })
@@ -1250,7 +1301,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -1274,7 +1326,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.propose(
       0,
@@ -1297,7 +1350,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     // normal
     await sportsclub.propose(
@@ -1342,7 +1396,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.callExtension(wethAddress, 10, 0x0).should.be.reverted)
   })
@@ -1356,7 +1411,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.connect(alice).callExtension(bob.address, 10, 0x0).should.be.reverted)
   })
@@ -1373,7 +1429,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.transfer(receiver.address, getBigNumber(4))
     expect(await sportsclub.balanceOf(sender.address)).to.equal(getBigNumber(6))
@@ -1394,7 +1451,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(
       await sportsclub.transfer(receiver.address, getBigNumber(11)).should.be.reverted
@@ -1413,7 +1471,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(
       await sportsclub.transfer(receiver.address, getBigNumber(1)).should.be.reverted
@@ -1432,7 +1491,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.burn(getBigNumber(1))
   })
@@ -1449,7 +1509,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(
       await sportsclub.burn(getBigNumber(11)).should.be.reverted
@@ -1468,7 +1529,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(1))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(1))
@@ -1487,7 +1549,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(1))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(1))
@@ -1507,7 +1570,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(4))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(4))
@@ -1525,7 +1589,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(4))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(4))
@@ -1544,7 +1609,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(4))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(4))
@@ -1563,7 +1629,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.approve(receiver.address, getBigNumber(4))
     expect(await sportsclub.allowance(sender.address, receiver.address)).to.equal(getBigNumber(4))
@@ -1579,7 +1646,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(
       await sportsclub.getPriorVotes(bob.address, 1941275221).should.be.reverted
@@ -1595,7 +1663,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.delegates(bob.address)).to.equal(bob.address)
   })
@@ -1609,7 +1678,8 @@ describe("SportsClubDAO", function () {
       [],
       [bob.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     expect(await sportsclub.getCurrentVotes(bob.address)).to.equal(getBigNumber(10))
   })
@@ -1626,7 +1696,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.delegate(receiver.address)
     expect(await sportsclub.delegates(sender.address)).to.equal(receiver.address)
@@ -1652,7 +1723,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.delegate(receiver.address)
     expect(await sportsclub.getCurrentVotes(sender.address)).to.equal(0)
@@ -1677,7 +1749,8 @@ describe("SportsClubDAO", function () {
       [],
       [sender.address],
       [getBigNumber(10)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     await sportsclub.delegate(receiver.address)
     expect(await sportsclub.getCurrentVotes(sender.address)).to.equal(0)
@@ -1700,7 +1773,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     const domain = {
       name: "SPORTSCLUB",
@@ -1766,7 +1840,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     const rs = ethers.utils.formatBytes32String("rs")
     expect(
@@ -1783,7 +1858,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     const domain = {
       name: "SPORTSCLUB",
@@ -1819,7 +1895,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     const rs = ethers.utils.formatBytes32String("rs")
     expect(
@@ -1843,7 +1920,8 @@ describe("SportsClubDAO", function () {
       [],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
     
     await sportsclub.propose(9, "TEST", [reentrant.address], [1], [0x0])
@@ -1871,7 +1949,8 @@ describe("SportsClubDAO", function () {
       [0x00],
       [proposer.address],
       [getBigNumber(1)],
-      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      [30, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      proposer.address
     )
 
     expect(await callMock.called()).to.equal(false)
